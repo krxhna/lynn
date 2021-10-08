@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'accesories.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'accesories.dart';
+import 'dart:math';
 
 class bmi extends StatefulWidget {
   // bmi({Key? key}) : super(key: key);
@@ -15,6 +16,8 @@ class _bmiState extends State<bmi> {
   TextEditingController height_controller = TextEditingController();
   TextEditingController weight_controller = TextEditingController();
   int _currentValue_weight = 74;
+  int _currentValue_height = 174;
+  int bmi = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +36,59 @@ class _bmiState extends State<bmi> {
         body: Center(
           child: Column(
             children: <Widget>[
+              Text(
+                "Your height in centimeters",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
               NumberPicker(
-                selectedTextStyle: TextStyle(color: Colors.amber, fontSize: 30),
+                selectedTextStyle: TextStyle(color: main_color, fontSize: 30),
                 value: _currentValue_weight,
                 minValue: 0,
                 maxValue: 500,
                 onChanged: (value) =>
                     setState(() => _currentValue_weight = value),
               ),
-              Text('Current value: $_currentValue_weight Kgs'),
+              // Text('$_currentValue_weight Kgs'),
+              //height
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Your height in centimeters",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              NumberPicker(
+                axis: Axis.horizontal,
+                selectedTextStyle: TextStyle(color: main_color, fontSize: 30),
+                value: _currentValue_height,
+                minValue: 100,
+                maxValue: 300,
+                onChanged: (value) =>
+                    setState(() => _currentValue_height = value),
+              ),
+
+              // Text('$_currentValue_height cms'),
+
+              ElevatedButton(
+                  child: Text("calcuate my bmi"),
+                  style: ElevatedButton.styleFrom(
+                    primary: main_color,
+                    // onPrimary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      bmi = (_currentValue_height / 100).toInt() +
+                          _currentValue_weight;
+                    });
+                  }),
+
+              Text("$bmi")
             ],
           ),
         ));
