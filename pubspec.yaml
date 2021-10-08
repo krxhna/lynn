@@ -32,6 +32,7 @@ dependencies:
   firebase_core: "^0.7.0"
   cloud_firestore: "^0.16.0+1"
   numberpicker: ^2.1.1
+  syncfusion_flutter_sliders: ^19.3.44
 
 dev_dependencies:
   flutter_test:

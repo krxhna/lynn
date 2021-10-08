@@ -4,6 +4,7 @@ import 'accesories.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'accesories.dart';
 import 'dart:math';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class bmi extends StatefulWidget {
   // bmi({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class _bmiState extends State<bmi> {
           child: Column(
             children: <Widget>[
               Text(
-                "Your height in centimeters",
+                "Your weight in Kilograms",
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
               NumberPicker(
@@ -83,12 +84,42 @@ class _bmiState extends State<bmi> {
                   ),
                   onPressed: () {
                     setState(() {
-                      bmi = (_currentValue_height / 100).toInt() +
-                          _currentValue_weight;
+                      bmi = (_currentValue_weight /
+                              pow(_currentValue_height / 100, 2))
+                          .toInt();
                     });
                   }),
 
-              Text("$bmi")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "your bmi is ",
+                    style: TextStyle(color: main_color, fontSize: 25),
+                  ),
+                  Text(
+                    "$bmi",
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
+                ],
+              ),
+
+              SfSlider(
+                activeColor: main_color,
+                min: 15,
+                max: 35.0,
+                value: bmi,
+                interval: 10,
+                showTicks: true,
+                showLabels: true,
+                enableTooltip: true,
+                minorTicksPerInterval: 1,
+                onChanged: (dynamic value) {
+                  setState(() {
+                    bmi = value;
+                  });
+                },
+              ),
             ],
           ),
         ));
