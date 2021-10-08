@@ -4,6 +4,7 @@ import 'firstpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'bmi.dart';
 
 Future<void> main() async {
   // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: home(),
+      home: bmi(),
     );
   }
 }
@@ -65,7 +66,6 @@ class _homeState extends State<home> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => FirstPage()));
                 }),
-            
             MaterialButton(
               color: login ? Colors.green : Colors.red,
               child: Text(
