@@ -5,6 +5,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'accesories.dart';
 import 'dart:math';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:lynn/progress.dart';
 
 class bmi extends StatefulWidget {
   // bmi({Key? key}) : super(key: key);
@@ -24,16 +25,7 @@ class _bmiState extends State<bmi> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              "💮 lynn  ",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ),
+        appBar: the_appbar(),
         body: Center(
           child: Column(
             children: <Widget>[
@@ -104,6 +96,7 @@ class _bmiState extends State<bmi> {
                 ],
               ),
 
+              //slider
               SfSlider(
                 activeColor: main_color,
                 min: 15,
@@ -120,6 +113,17 @@ class _bmiState extends State<bmi> {
                   });
                 },
               ),
+
+              //material app
+
+              MaterialButton(
+                  color: main_color,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => progress()));
+                  })
             ],
           ),
         ));
