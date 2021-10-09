@@ -25,6 +25,7 @@ class _bmiState extends State<bmi> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        drawer: the_drawer(context),
         appBar: the_appbar(),
         body: Center(
           child: Column(
