@@ -56,7 +56,14 @@ class _progressState extends State<progress> {
                 final cloud_points = snapshot.data['w'];
                 return !snapshot.hasData
                     ? Text('PLease Wait')
-                    : SfSparkLineChart(data: cloud_points);
+                    : SfSparkLineChart(
+                        color: Colors.amber,
+                        trackball: SparkChartTrackball(
+                            activationMode: SparkChartActivationMode.tap),
+                        //Enable marker
+                        marker: SparkChartMarker(
+                            displayMode: SparkChartMarkerDisplayMode.all),
+                        data: cloud_points);
               },
             ),
           ),
