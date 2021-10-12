@@ -10,6 +10,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 class progress extends StatefulWidget {
   // progress({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class progress extends StatefulWidget {
 }
 
 class _progressState extends State<progress> {
+  TextEditingController weight_ctrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,33 +46,58 @@ class _progressState extends State<progress> {
               },
             ),
           ),
+          chartbar(),
           Text("hahahha"),
-          Container(
-            height: 100,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("users")
-                  .doc('op')
-                  .snapshots(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                final List<num> points = [1, 9, 8, 6, 23, 1, 7, 18, 45];
-                final cloud_points = snapshot.data['w'];
-                return !snapshot.hasData
-                    ? Text('PLease Wait')
-                    : SfSparkLineChart(
-                      
-                        color: main_color,
-                        trackball: SparkChartTrackball(
-                            activationMode: SparkChartActivationMode.tap),
-                        //Enable marker
-                        marker: SparkChartMarker(
-                            displayMode: SparkChartMarkerDisplayMode.all),
-                        data: cloud_points.cast<int>());
-              },
-            ),
+          //text somehitng and them imma add to data
+          TextFormField(
+            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+            keyboardType: TextInputType.number,
+            controller: weight_ctrl,
           ),
+
+          //botton
+          MaterialButton(
+              color: Colors.amber,
+              onPressed: () {
+                addweight(int.parse(weight_ctrl.text));
+              })
         ],
       ),
     );
   }
+}
+
+chartbar() {
+  return Container(
+    height: 100,
+    child: StreamBuilder(
+      stream:
+          FirebaseFirestore.instance.collection("users").doc('op').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        final List<num> points = [1, 9, 8, 6, 23, 1, 7, 18, 45];
+        final cloud_points = snapshot.data['W'];
+        return !snapshot.hasData
+            ? Text('PLease Wait')
+            : SfSparkLineChart(
+                color: main_color,
+                trackball: SparkChartTrackball(
+                    activationMode: SparkChartActivationMode.tap),
+                //Enable marker
+                marker: SparkChartMarker(
+                    displayMode: SparkChartMarkerDisplayMode.all),
+                data: cloud_points.cast<int>());
+      },
+    ),
+  );
+}
+
+Future<void> addweight(w) {
+  return users
+      .doc('op')
+      .update({
+        'full_name': "Mary Jane",
+        'W': FieldValue.arrayUnion([w])
+      })
+      .then((value) => print("User Added"))
+      .catchError((error) => print("Failed to add user: $error"));
 }
