@@ -118,18 +118,14 @@ class _height_weightState extends State<height_weight> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("tite"),
-      ),
-
-      body: Center(
-        child: Row(
-          children: [
-            
-          ],
+        appBar: AppBar(
+          title: Text("tite"),
         ),
-      )
-    );
+        body: Center(
+          child: Row(
+            children: [],
+          ),
+        ));
   }
 }
 

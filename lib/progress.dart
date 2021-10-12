@@ -44,6 +44,7 @@ class _progressState extends State<progress> {
               },
             ),
           ),
+          Text("hahahha"),
           Container(
             height: 100,
             child: StreamBuilder(
@@ -57,13 +58,14 @@ class _progressState extends State<progress> {
                 return !snapshot.hasData
                     ? Text('PLease Wait')
                     : SfSparkLineChart(
-                        color: Colors.amber,
+                      
+                        color: main_color,
                         trackball: SparkChartTrackball(
                             activationMode: SparkChartActivationMode.tap),
                         //Enable marker
                         marker: SparkChartMarker(
                             displayMode: SparkChartMarkerDisplayMode.all),
-                        data: cloud_points);
+                        data: cloud_points.cast<int>());
               },
             ),
           ),
