@@ -6,6 +6,7 @@ import 'accesories.dart';
 import 'dart:math';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:lynn/progress.dart';
+import 'clean_home.dart';
 
 class bmi extends StatefulWidget {
   // bmi({Key? key}) : super(key: key);
@@ -123,7 +124,7 @@ class _bmiState extends State<bmi> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => progress()));
+                            builder: (BuildContext context) => clean_home()));
                   })
             ],
           ),
