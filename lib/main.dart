@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'bmi.dart';
+import 'accesories.dart';
 
 Future<void> main() async {
   // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -19,14 +20,30 @@ Future<void> main() async {
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class MyApp extends StatelessWidget {
+  return_color(f) {
+    return MaterialColor(
+      f,
+      <int, Color>{
+        50: Color(f),
+        100: Color(f),
+        200: Color(f),
+        300: Color(f),
+        400: Color(f),
+        500: Color(f),
+        600: Color(f),
+        700: Color(f),
+        800: Color(f),
+        900: Color(f),
+      },
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: return_color(main_color_hex)),
       home: bmi(),
     );
   }

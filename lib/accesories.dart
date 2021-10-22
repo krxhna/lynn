@@ -4,7 +4,9 @@ import 'package:lynn/progress.dart';
 import 'bmi.dart';
 //firstpage
 
-var main_color = Color(0xffFF7F00);
+var main_color = Color(0xff00D68A);
+var main_main_color = Color(0xff00D68A);
+var main_color_hex = 0xff00D68A;
 
 the_appbar() {
   return AppBar(
